@@ -1,26 +1,26 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux'
-import { composeWithDevTools } from 'redux-devtools-extension'
-import { persistStore, persistReducer } from 'redux-persist'
-import AsyncStorage from '@react-native-async-storage/async-storage'
-import settings from './settings/reducer'
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import { persistStore, persistReducer } from 'redux-persist';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import settings from './settings/reducer';
 
-const initialState = {}
+const initialState = {};
 const persistConfig = {
-  key: 'root',
-  storage: AsyncStorage,
-  whitelist: ['settings'],
-}
+	key: 'root',
+	storage: AsyncStorage,
+	whitelist: ['settings'],
+};
 
 const rootReducer = combineReducers({
-  settings: settings,
-})
+	settings: settings,
+});
 
-const persistedReducer = persistReducer(persistConfig, rootReducer)
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 const store = createStore(
-  persistedReducer,
-  initialState,
-  composeWithDevTools(applyMiddleware())
-)
+	persistedReducer,
+	initialState,
+	composeWithDevTools(applyMiddleware())
+);
 
-const persistor = persistStore(store)
-export { store, persistor }
+const persistor = persistStore(store);
+export { store, persistor };
