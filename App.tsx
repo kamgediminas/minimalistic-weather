@@ -1,7 +1,7 @@
 import React, {Suspense} from 'react'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
-import { store, persistor } from './src/store/store'
+import { store, persistor } from './src/store'
 import './i18n'
 import Navigation from './src/navigation/Navigation'
 

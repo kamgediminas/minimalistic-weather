@@ -1,7 +1,7 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
-import en from './public/translations/en.json'
-import lt from './public/translations/lt.json'
+import en from './src/translations/en.json'
+import lt from './src/translations/lt.json'
 import AsyncStorage  from '@react-native-async-storage/async-storage';
 import "intl-pluralrules"
 
