@@ -16,7 +16,7 @@ const reducer = (state = initialState, action:Action) => {
 			mode: currentMode === 'dark' ? 'light' : 'dark',
 		};
 	default: {
-		return { ...state, mode: 'light' };
+		return state;
 	}
 	}
 };

@@ -8,5 +8,10 @@ const initialState = {
 };
 
 const reducer = (state = initialState, action:Action) => {
-
+	switch (action.type) {
+	case 'WEATHER_FETCH_REQUESTED':
+		return state;
+	default:
+		return state;
+	}
 };
