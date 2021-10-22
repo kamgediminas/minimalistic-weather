@@ -1,13 +1,16 @@
+interface Action {
+	type: string
+	payload: string
+}
 
 const initialState = {
 	mode: 'dark',
 };
 
-const reducer = (state = initialState, action:any) => {
-	const { payload } = action;
+const reducer = (state = initialState, action:Action) => {
+	const currentMode = state.mode;
 	switch (action.type) {
 	case 'CHANGE_MODE':
-		const currentMode = state.mode;
 		return {
 			...state,
 			mode: currentMode === 'dark' ? 'light' : 'dark',
