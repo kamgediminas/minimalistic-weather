@@ -1,13 +1,14 @@
 import React from 'react';
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { Button, View } from 'react-native';
 import HomeScreen from '../screens/Home';
 import SettingsScreen from '../screens/Settings';
 import { useSelector } from 'react-redux';
 import c from '../constants/colors';
 import StatusBar from '../components/UI/StatusBar';
 
-const Tab = createBottomTabNavigator();
+const Drawer = createDrawerNavigator();
 
 const LightTheme = {
 	...DefaultTheme,
@@ -43,14 +44,14 @@ const Navigation = () => {
 	return (
 		<NavigationContainer theme={theme === 'dark' ? DarkTheme : LightTheme}>
 			<StatusBar />
-			<Tab.Navigator
+			<Drawer.Navigator
 				screenOptions={{
 					header: () => false,
 				}}
 			>
-				<Tab.Screen name='Home' component={HomeScreen} />
-				<Tab.Screen name='Settings' component={SettingsScreen} />
-			</Tab.Navigator>
+				<Drawer.Screen name='Home' component={HomeScreen} />
+				<Drawer.Screen name='Settings' component={SettingsScreen} />
+			</Drawer.Navigator>
 		</NavigationContainer>
 	);
 };
