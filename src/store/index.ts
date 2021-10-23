@@ -1,8 +1,12 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { Store } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { persistStore, persistReducer } from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import settings from './settings/reducer';
+import settings from './settings/settings.reducer';
+import weather from './weather/weather.reducer';
+import { rootSaga } from './sagas';
+import createSagaMiddleware from 'redux-saga';
 
 const initialState = {};
 const persistConfig = {
@@ -12,15 +16,20 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
-	settings: settings,
+	settings,
+	weather
 });
 
+const sagaMiddleware = createSagaMiddleware();
 const persistedReducer = persistReducer(persistConfig, rootReducer);
-const store = createStore(
+const store:Store = createStore(
 	persistedReducer,
 	initialState,
-	composeWithDevTools(applyMiddleware())
+	composeWithDevTools(applyMiddleware(sagaMiddleware))
 );
 
 const persistor = persistStore(store);
 export { store, persistor };
+
+sagaMiddleware.run(rootSaga);
+
