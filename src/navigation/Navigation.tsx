@@ -38,10 +38,10 @@ const DarkTheme = {
 };
 
 const Navigation = () => {
-	const mode = useSelector(({ settings }: any) => settings.mode);
+	const theme = useSelector(({ settings }: any) => settings.theme);
 
 	return (
-		<NavigationContainer theme={mode === 'dark' ? DarkTheme : LightTheme}>
+		<NavigationContainer theme={theme === 'dark' ? DarkTheme : LightTheme}>
 			<StatusBar />
 			<Tab.Navigator
 				screenOptions={{

@@ -4,16 +4,16 @@ interface Action {
 }
 
 const initialState = {
-	mode: 'dark',
+	theme: 'dark',
 };
 
 const reducer = (state = initialState, action:Action) => {
-	const currentMode = state.mode;
+	const currentTheme = state.theme;
 	switch (action.type) {
-	case 'CHANGE_MODE':
+	case 'CHANGE_THEME':
 		return {
 			...state,
-			mode: currentMode === 'dark' ? 'light' : 'dark',
+			theme: currentTheme === 'dark' ? 'light' : 'dark',
 		};
 	default: {
 		return state;

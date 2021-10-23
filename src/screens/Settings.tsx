@@ -11,8 +11,8 @@ const Settings = () => {
 		i18n.changeLanguage(language);
 	};
 
-	const modeHandler = () => {
-		dispatch({ type: 'CHANGE_MODE' });
+	const themeHandler = () => {
+		dispatch({ type: 'CHANGE_THEME' });
 	};
 
 	return (
@@ -23,8 +23,8 @@ const Settings = () => {
 			<TouchableOpacity onPress={() => lngHandler('en')}>
 				<Text>EN</Text>
 			</TouchableOpacity>
-			<TouchableOpacity onPress={() => modeHandler()}>
-				<Text>Mode</Text>
+			<TouchableOpacity onPress={() => themeHandler()}>
+				<Text>Theme</Text>
 			</TouchableOpacity>
 		</View>
 	);
