@@ -11,7 +11,8 @@ const StatusBarComponent = () => {
       style={{
         height: Platform.OS === 'ios' ? getStatusBarHeight() : 0,
         backgroundColor: colors.background,
-      }}>
+      }}
+    >
       <StatusBar
         barStyle={dark ? 'light-content' : 'dark-content'}
         backgroundColor={colors.background}
