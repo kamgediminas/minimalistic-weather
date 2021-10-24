@@ -10,26 +10,25 @@ import createSagaMiddleware from 'redux-saga';
 
 const initialState = {};
 const persistConfig = {
-	key: 'root',
-	storage: AsyncStorage,
-	whitelist: ['settings'],
+  key: 'root',
+  storage: AsyncStorage,
+  whitelist: ['settings'],
 };
 
 const rootReducer = combineReducers({
-	settings,
-	weather
+  settings,
+  weather,
 });
 
 const sagaMiddleware = createSagaMiddleware();
 const persistedReducer = persistReducer(persistConfig, rootReducer);
-const store:Store = createStore(
-	persistedReducer,
-	initialState,
-	composeWithDevTools(applyMiddleware(sagaMiddleware))
+const store: Store = createStore(
+  persistedReducer,
+  initialState,
+  composeWithDevTools(applyMiddleware(sagaMiddleware)),
 );
 
 const persistor = persistStore(store);
 export { store, persistor };
 
 sagaMiddleware.run(rootSaga);
-

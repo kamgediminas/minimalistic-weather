@@ -4,21 +4,21 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 
 const Home = () => {
-	const { t } = useTranslation();
-	const dispatch = useDispatch();
+  const { t } = useTranslation();
+  const dispatch = useDispatch();
 
-	const fetchWeather = () => {
-		dispatch({type: 'WEATHER_FETCH_REQUESTED', payload: {lat: 54.70, long: 25.30}});
-	};
+  const fetchWeather = () => {
+    dispatch({ type: 'WEATHER_FETCH_REQUESTED', payload: { lat: 54.7, long: 25.3 } });
+  };
 
-	return (
-		<View>
-			<Text>{t('home.intro')}</Text>
-			<TouchableOpacity onPress={fetchWeather}>
-				<Text>feč</Text>
-			</TouchableOpacity>
-		</View>
-	);
+  return (
+    <View>
+      <Text>{t('home.intro')}</Text>
+      <TouchableOpacity onPress={fetchWeather}>
+        <Text>feč</Text>
+      </TouchableOpacity>
+    </View>
+  );
 };
 
 export default Home;
