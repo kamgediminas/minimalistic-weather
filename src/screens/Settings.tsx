@@ -1,13 +1,13 @@
 import React from 'react';
-import { View, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useColor } from '../hooks/useColor';
 
 import Title from '../components/UI/Title';
-import LanguageButton from '../components/UI/LanguageButton';
-import ThemeButton from '../components/UI/ThemeButton';
+import SettingsButton from '../components/UI/SettingsButton';
 
 import { ColorInterface } from '../types/types';
 import fonts from '../constants/fonts';
@@ -16,13 +16,19 @@ const Settings = () => {
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
   const { colors } = useColor();
+  const settings = useSelector(({ settings }: any) => settings);
+
+  const themeHandler = (theme: string) => {
+    dispatch({ type: 'CHANGE_THEME', payload: { theme } });
+  };
 
   const lngHandler = (language: string) => {
     i18n.changeLanguage(language);
+    dispatch({ type: 'CHANGE_LANGUAGE', payload: { language } });
   };
 
-  const themeHandler = () => {
-    dispatch({ type: 'CHANGE_THEME' });
+  const unitHandler = (unit: string) => {
+    dispatch({ type: 'CHANGE_UNIT', payload: { unit } });
   };
 
   return (
@@ -33,22 +39,41 @@ const Settings = () => {
       {/* Language section */}
       <View style={styles(colors).innerContainer}>
         <Title text={t('settings.language')} size={fonts.sizeMedium} />
-        <View style={styles(colors).languageContainer}>
-          <LanguageButton title="LT" onPress={() => lngHandler('lt')} />
-          <LanguageButton title="EN" onPress={() => lngHandler('en')} />
+        <View style={styles(colors).buttonContainer}>
+          <SettingsButton active={settings.language === 'lt'} onPress={() => lngHandler('lt')}>
+            <Title text={'LT'} size={fonts.sizeSmall} />
+          </SettingsButton>
+          <SettingsButton active={settings.language === 'en'} onPress={() => lngHandler('en')}>
+            <Title text={'EN'} size={fonts.sizeSmall} />
+          </SettingsButton>
         </View>
       </View>
 
       {/* Theme */}
       <View style={styles(colors).innerContainer}>
         <Title text={t('settings.theme')} size={fonts.sizeMedium} />
-        <ThemeButton />
-        {/* <TouchableOpacity onPress={() => themeHandler()}> */}
-        {/* </TouchableOpacity> */}
+        <View style={styles(colors).buttonContainer}>
+          <SettingsButton active={settings.theme === 'light'} onPress={() => themeHandler('light')}>
+            <MaterialCommunityIcons name="weather-sunny" size={32} color={colors.text} />
+          </SettingsButton>
+          <SettingsButton active={settings.theme === 'dark'} onPress={() => themeHandler('dark')}>
+            <MaterialCommunityIcons name="weather-night" size={32} color={colors.text} />
+          </SettingsButton>
+        </View>
       </View>
 
       {/* Unit */}
-      <View style={styles(colors).innerContainer}></View>
+      <View style={styles(colors).innerContainer}>
+        <Title text={t('settings.unit')} size={fonts.sizeMedium} />
+        <View style={styles(colors).buttonContainer}>
+          <SettingsButton active={settings.unit === 'c'} onPress={() => unitHandler('c')}>
+            <Title text={'C'} size={fonts.sizeSmall} />
+          </SettingsButton>
+          <SettingsButton active={settings.unit === 'f'} onPress={() => unitHandler('f')}>
+            <Title text={'F'} size={fonts.sizeSmall} />
+          </SettingsButton>
+        </View>
+      </View>
     </View>
   );
 };
@@ -66,7 +91,7 @@ const styles = (colors: ColorInterface) =>
     innerContainer: {
       marginTop: 20,
     },
-    languageContainer: {
+    buttonContainer: {
       flexDirection: 'row',
     },
   });

@@ -3,6 +3,7 @@
     "settings":{
         "title": "Nustatymai",
         "language": "Kalba",
-        "theme": "Tema"
+        "theme": "Tema",
+        "unit": "Vienetas"
     }
 }
