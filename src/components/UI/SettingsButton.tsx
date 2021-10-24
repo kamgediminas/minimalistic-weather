@@ -2,9 +2,6 @@ import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { useColor } from '../../hooks/useColor';
 
-import Title from './Title';
-
-import fonts from '../../constants/fonts';
 import { ColorInterface } from '../../types/types';
 
 interface Props {

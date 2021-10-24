@@ -40,11 +40,11 @@ const Settings = () => {
       <View style={styles(colors).innerContainer}>
         <Title text={t('settings.language')} size={fonts.sizeMedium} />
         <View style={styles(colors).buttonContainer}>
-          <SettingsButton active={settings.language === 'lt'} onPress={() => lngHandler('lt')}>
-            <Title text={'LT'} size={fonts.sizeSmall} />
-          </SettingsButton>
           <SettingsButton active={settings.language === 'en'} onPress={() => lngHandler('en')}>
             <Title text={'EN'} size={fonts.sizeSmall} />
+          </SettingsButton>
+          <SettingsButton active={settings.language === 'lt'} onPress={() => lngHandler('lt')}>
+            <Title text={'LT'} size={fonts.sizeSmall} />
           </SettingsButton>
         </View>
       </View>
