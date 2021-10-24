@@ -6,8 +6,7 @@ import SettingsScreen from '../screens/Settings';
 import { useSelector } from 'react-redux';
 import c from '../constants/colors';
 import StatusBar from '../components/UI/StatusBar';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-
+import TabBar from '../components/UI/TabBar';
 const Tab = createBottomTabNavigator();
 
 const LightTheme = {
@@ -47,26 +46,9 @@ const Navigation = () => {
     <NavigationContainer theme={currentTheme}>
       <StatusBar />
       <Tab.Navigator
-        screenOptions={({ route }) => ({
-          // Hides the top header
+        tabBar={(props) => <TabBar {...props} />}
+        screenOptions={() => ({
           header: () => false,
-          // Hides screen labels in navigation
-          tabBarShowLabel: false,
-          // Custom icons for each route
-          tabBarIcon: () => {
-            if (route.name === 'Home') {
-              return (
-                <MaterialCommunityIcons name="home" size={42} color={currentTheme.colors.primary} />
-              );
-            }
-            if (route.name === 'Settings') {
-              return (
-                <MaterialCommunityIcons name="cog" size={42} color={currentTheme.colors.primary} />
-              );
-            }
-          },
-          // Whole bar style to remove top border
-          tabBarStyle: { borderTopWidth: 0, elevation: 0, height: 80 },
         })}
       >
         <Tab.Screen name="Home" component={HomeScreen} />
