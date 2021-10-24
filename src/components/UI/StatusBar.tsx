@@ -1,10 +1,10 @@
 import React from 'react';
 import { View, Platform, StatusBar } from 'react-native';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
-import { useTheme } from '@react-navigation/native';
+import { useColor } from '../../hooks/useColor';
 
 const StatusBarComponent = () => {
-  const { colors, dark } = useTheme();
+  const { colors, darkStatusIcons } = useColor();
 
   return (
     <View
@@ -14,7 +14,7 @@ const StatusBarComponent = () => {
       }}
     >
       <StatusBar
-        barStyle={dark ? 'light-content' : 'dark-content'}
+        barStyle={darkStatusIcons ? 'dark-content' : 'light-content'}
         backgroundColor={colors.background}
       />
     </View>

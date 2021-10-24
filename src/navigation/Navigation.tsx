@@ -3,47 +3,29 @@ import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from '../screens/Home';
 import SettingsScreen from '../screens/Settings';
-import { useSelector } from 'react-redux';
-import c from '../constants/colors';
 import StatusBar from '../components/UI/StatusBar';
 import TabBar from '../components/UI/TabBar';
+import { useColor } from '../hooks/useColor';
+
 const Tab = createBottomTabNavigator();
 
-const LightTheme = {
-  ...DefaultTheme,
-  colors: {
-    ...DefaultTheme.colors,
-    primary: c.black,
-    background: c.white,
-    card: c.white,
-    text: c.black,
-    border: c.white,
-    // notification: 'rgb(255, 69, 58)',
-  },
-  dark: false,
-};
-
-const DarkTheme = {
-  ...DefaultTheme,
-  colors: {
-    ...DefaultTheme.colors,
-    primary: c.white,
-    background: c.black,
-    card: c.black,
-    text: c.white,
-    border: c.black,
-    // notification: 'rgb(255, 69, 58)',
-  },
-  dark: true,
-};
-
 const Navigation = () => {
-  const theme = useSelector(({ settings }: any) => settings.theme);
+  const { colors } = useColor();
 
-  const currentTheme = theme === 'dark' ? DarkTheme : LightTheme;
+  const Theme = {
+    ...DefaultTheme,
+    colors: {
+      ...DefaultTheme.colors,
+      primary: colors.text,
+      background: colors.background,
+      card: colors.background,
+      text: colors.text,
+      border: colors.background,
+    },
+  };
 
   return (
-    <NavigationContainer theme={currentTheme}>
+    <NavigationContainer theme={Theme}>
       <StatusBar />
       <Tab.Navigator
         tabBar={(props) => <TabBar {...props} />}
