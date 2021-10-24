@@ -47,6 +47,8 @@ const Navigation = () => {
       <Drawer.Navigator
         screenOptions={{
           header: () => false,
+          drawerType: 'slide',
+          drawerPosition: 'right',
         }}>
         <Drawer.Screen name="Home" component={HomeScreen} />
         <Drawer.Screen name="Settings" component={SettingsScreen} />
