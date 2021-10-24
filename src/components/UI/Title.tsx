@@ -1,31 +1,32 @@
-import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 
-import {useColor} from '../../hooks/useColor'
-import fonts from '../../constants/fonts'
-import {ColorInterface, FontInterface} from '../../types/types'
+import { useColor } from '../../hooks/useColor';
+import fonts from '../../constants/fonts';
+import { ColorInterface, FontInterface } from '../../types/types';
 
 interface Props {
-    text: string;
-    size?: string;
+  text: string;
+  size: number;
 }
 
-const Title = ({text, size}:Props) => {
-    const {colors} = useColor()
+const Title = ({ text, size }: Props) => {
+  const { colors } = useColor();
 
-    return (
-        // <View>
-            <Text style={styles(colors, fonts, size).text}>{text}</Text>
-        // </View>
-    )
-}
+  return (
+    // <View>
+    <Text style={styles(colors, fonts, size).text}>{text}</Text>
+    // </View>
+  );
+};
 
-export default Title
+export default Title;
 
-const styles = (colors:ColorInterface, fonts: FontInterface, size:string | undefined) => StyleSheet.create({
+const styles = (colors: ColorInterface, fonts: FontInterface, size: number) =>
+  StyleSheet.create({
     text: {
-        fontFamily: fonts.regular500,
-        fontSize: size === 'large' ? fonts.sizeLarge : fonts.sizeMedium,
-        color: colors.text,
-    }
-})
+      fontFamily: fonts.regular500,
+      fontSize: size,
+      color: colors.text,
+    },
+  });

@@ -2,6 +2,7 @@
     "home.intro":"Čia bus aplikacija!",
     "settings":{
         "title": "Nustatymai",
-        "language": "Kalba"
+        "language": "Kalba",
+        "theme": "Tema"
     }
 }

@@ -2,6 +2,7 @@
     "home.intro":"Soon to be app!",
     "settings":{
         "title": "Settings",
-        "language": "Language"
+        "language": "Language",
+        "theme": "Theme"
     }
 }
