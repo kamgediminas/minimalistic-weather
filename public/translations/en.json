@@ -1,3 +1,7 @@
 {
-    "home.intro":"Soon to be app!"
+    "home.intro":"Soon to be app!",
+    "settings":{
+        "title": "Settings",
+        "language": "Language"
+    }
 }

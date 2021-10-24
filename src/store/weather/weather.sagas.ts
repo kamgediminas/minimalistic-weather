@@ -1,10 +1,10 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { fetchWeatherApi } from '../../api/weather.api';
-import { coordinatesInterface } from '../../types/types';
+import { CoordinatesInterface } from '../../types/types';
 
 interface fetchWeatherInterface {
   type: string;
-  payload: coordinatesInterface;
+  payload: CoordinatesInterface;
 }
 
 function* fetchWeather(action: fetchWeatherInterface): any {
