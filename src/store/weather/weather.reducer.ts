@@ -4,7 +4,7 @@ interface Action {
 }
 
 const initialState = {
-  isLoading: false,
+  isLoading: true,
   error: false,
   data: {},
 };
