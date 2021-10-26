@@ -1,13 +1,18 @@
 import React, { useEffect } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
-import Title from '../components/UI/Title';
-import fonts from '../constants/fonts';
 import { useColor } from '../hooks/useColor';
-import weatherCodeIcon from '../util/weatherCode';
-import displayTemperature from '../util/displayTemperature';
+import displayTemperature from '../utils/displayTemperature';
+import weatherCodeIcon from '../utils/weatherCode';
+
+import Title from '../components/UI/Title';
+import Spinner from '../components/UI/Spinner';
+
+import fonts from '../constants/fonts';
+
 const Home = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
@@ -16,21 +21,19 @@ const Home = () => {
   const unit = useSelector(({ settings }: any) => settings.unit);
 
   const fetchWeather = () => {
-    console.log(weather);
-    dispatch({ type: 'WEATHER_FETCH_REQUESTED', payload: { lat: 54.7, long: 25.3 } });
+    dispatch({ type: 'WEATHER_FETCH_REQUESTED' });
   };
 
   useEffect(() => {
     fetchWeather();
-    const interval = setInterval(() => {
-      fetchWeather();
-    }, 60000);
-
-    return () => clearInterval(interval);
   }, []);
 
   if (weather.isLoading) {
-    return <></>;
+    return (
+      <View style={styles().container}>
+        <Spinner />
+      </View>
+    );
   }
 
   const { data } = weather;
@@ -39,15 +42,17 @@ const Home = () => {
 
   return (
     <View style={styles().container}>
-      <MaterialCommunityIcons
-        name={weatherCodeIcon({ weathercode })}
-        size={64}
-        color={colors.text}
-      />
-      <Title
-        text={`${displayTemperature({ temperature, unit })}\xB0${unit.toUpperCase()}`}
-        size={fonts.sizeLarge}
-      />
+      <TouchableOpacity style={styles().container} onPress={fetchWeather}>
+        <MaterialCommunityIcons
+          name={weatherCodeIcon({ weathercode })}
+          size={64}
+          color={colors.text}
+        />
+        <Title
+          text={`${displayTemperature({ temperature, unit })}\xB0${unit.toUpperCase()}`}
+          size={fonts.sizeLarge}
+        />
+      </TouchableOpacity>
     </View>
   );
 };
@@ -58,6 +63,7 @@ const styles = () =>
       alignItems: 'center',
       justifyContent: 'center',
       height: '100%',
+      width: '100%',
     },
   });
 

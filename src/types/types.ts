@@ -1,6 +1,6 @@
 export interface CoordinatesInterface {
-  lat: number;
-  long: number;
+  latitude: number;
+  longitude: number;
 }
 
 export interface ColorInterface {

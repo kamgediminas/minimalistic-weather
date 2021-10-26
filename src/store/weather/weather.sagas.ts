@@ -1,20 +1,17 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { fetchWeatherApi } from '../../api/weather.api';
-import { CoordinatesInterface } from '../../types/types';
+import * as Location from 'expo-location';
 
-interface fetchWeatherInterface {
-  type: string;
-  payload: CoordinatesInterface;
-}
-
-function* fetchWeather(action: fetchWeatherInterface): any {
+function* fetchWeather(): any {
   try {
-    const { payload } = action;
-    const { data } = yield call(fetchWeatherApi, payload);
+    const { status } = yield call(Location.requestForegroundPermissionsAsync);
+    // throw if not granted
+    const { coords } = yield call(Location.getCurrentPositionAsync);
+    const { data } = yield call(fetchWeatherApi, coords);
+
     yield put({ type: 'WEATHER_FETCH_SUCCEEDED', payload: data });
   } catch (e: unknown) {
     const { message } = e as Error;
-    console.log(e);
     yield put({ type: 'WEATHER_FETCH_FAILED', payload: message });
   }
 }
