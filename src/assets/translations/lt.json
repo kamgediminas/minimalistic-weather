@@ -1,0 +1,12 @@
+{
+  "error": {
+    "network": "Ryšio klaida",
+    "location": "Leiskite prieigą lokacijai"
+  },
+  "settings": {
+    "title": "Nustatymai",
+    "language": "Kalba",
+    "theme": "Tema",
+    "unit": "Vienetas"
+  }
+}

@@ -1,12 +1,12 @@
-{
-  "expo": {
+const config = () => {
+  return {
     "name": "Minimalistic weather",
     "slug": "minimalistic-weather",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./src/assets/icon.png",
+    "icon": "./src/assets/images/icon.png",
     "splash": {
-      "image": "./src/assets/splash.png",
+      "image": "./src/assets/images/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#18191a"
     },
@@ -21,12 +21,17 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./src/assets/adaptive-icon.png",
+        "foregroundImage": "./src/assets/images/adaptive-icon.png",
         "backgroundColor": "#18191a"
       }
     },
     "web": {
-      "favicon": "./src/assets/icon.png"
+      "favicon": "./src/assets/images/icon.png"
+    },
+    "androidStatusBar":{
+      hidden: true
     }
   }
 }
+
+export default config

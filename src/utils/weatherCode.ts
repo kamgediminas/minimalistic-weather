@@ -4,20 +4,19 @@ interface Props {
 }
 
 const weatherCodeIcon = ({ weathercode }: Props) => {
-
-const today = new Date();
-const time = today.getHours()
-const isNight = time > 20 || time < 6
+  const today = new Date();
+  const time = today.getHours();
+  const isNight = time > 20 || time < 6;
 
   switch (weathercode) {
     case 0:
     case 1:
-      if(isNight){
+      if (isNight) {
         return 'weather-night';
       }
       return 'weather-sunny';
     case 2:
-      if(isNight){
+      if (isNight) {
         return 'weather-night-partly-cloudy';
       }
       return 'weather-partly-cloudy';

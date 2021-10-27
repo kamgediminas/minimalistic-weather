@@ -41,23 +41,21 @@ const Home = () => {
   return (
     <View style={styles().container}>
       <TouchableOpacity style={styles().container} onPress={fetchWeather}>
-        {error ?
-         <Title
-           text={t(error)}
-           size={fonts.sizeSmall}
-         /> :
-         <>
-          <MaterialCommunityIcons
-          name={weatherCodeIcon({ weathercode })}
-          size={64}
-          color={colors.text}
-          />
-          <Title
-          text={`${displayTemperature({ temperature, unit })}\xB0${unit.toUpperCase()}`}
-          size={fonts.sizeLarge}
-          />
-         </>
-        }
+        {error ? (
+          <Title text={t(error)} size={fonts.sizeSmall} />
+        ) : (
+          <>
+            <MaterialCommunityIcons
+              name={weatherCodeIcon({ weathercode })}
+              size={64}
+              color={colors.text}
+            />
+            <Title
+              text={`${displayTemperature({ temperature, unit })}\xB0${unit.toUpperCase()}`}
+              size={fonts.sizeLarge}
+            />
+          </>
+        )}
       </TouchableOpacity>
     </View>
   );

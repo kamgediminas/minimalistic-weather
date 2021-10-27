@@ -5,22 +5,22 @@ import * as Location from 'expo-location';
 function* fetchWeather(): any {
   try {
     const { status } = yield call(Location.requestForegroundPermissionsAsync);
-    if(status !== 'granted'){
-      throw {message: 'error.location'}
+    if (status !== 'granted') {
+      throw { message: 'error.location' };
     }
     const { coords } = yield call(Location.getCurrentPositionAsync);
     const { response, error } = yield call(fetchWeatherApi, coords);
-    if(error){
-      throw {message: 'error.network'}
+    if (error) {
+      throw { message: 'error.network' };
     }
-    const {data} = response
+    const { data } = response;
     const { current_weather } = data;
     const { temperature, weathercode } = current_weather;
-    const payload = { temperature, weathercode }
+    const payload = { temperature, weathercode };
     yield put({ type: 'WEATHER_FETCH_SUCCEEDED', payload });
   } catch (e: unknown) {
-    const {message} = e as Error
-    yield put({ type: 'WEATHER_FETCH_FAILED', payload: {message} });
+    const { message } = e as Error;
+    yield put({ type: 'WEATHER_FETCH_FAILED', payload: { message } });
   }
 }
 
