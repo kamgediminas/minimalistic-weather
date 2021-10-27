@@ -1,5 +1,8 @@
 {
-    "home.intro":"Čia bus aplikacija!",
+    "error":{
+        "network": "Ryšio klaida",
+        "location": "Leiskite prieigą lokacijai"
+    },
     "settings":{
         "title": "Nustatymai",
         "language": "Kalba",

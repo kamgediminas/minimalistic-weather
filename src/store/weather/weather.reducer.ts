@@ -4,8 +4,8 @@ interface Action {
 }
 
 const initialState = {
-  isLoading: true,
-  error: false,
+  isLoading: false,
+  error: '',
   data: {},
 };
 
@@ -16,7 +16,7 @@ const reducer = (state = initialState, action: Action) => {
       return {
         ...state,
         isLoading: true,
-        error: false,
+        error: '',
       };
     case 'WEATHER_FETCH_SUCCEEDED':
       return {
@@ -28,7 +28,7 @@ const reducer = (state = initialState, action: Action) => {
       return {
         ...state,
         isLoading: false,
-        error: true,
+        error: payload.message,
       };
     default:
       return state;

@@ -18,6 +18,8 @@ const Home = () => {
   const dispatch = useDispatch();
   const { colors } = useColor();
   const weather = useSelector(({ weather }: any) => weather);
+  const { isLoading, error, data } = weather;
+  const { temperature, weathercode } = data;
   const unit = useSelector(({ settings }: any) => settings.unit);
 
   const fetchWeather = () => {
@@ -28,7 +30,7 @@ const Home = () => {
     fetchWeather();
   }, []);
 
-  if (weather.isLoading) {
+  if (isLoading) {
     return (
       <View style={styles().container}>
         <Spinner />
@@ -36,22 +38,26 @@ const Home = () => {
     );
   }
 
-  const { data } = weather;
-  const { current_weather } = data;
-  const { temperature, weathercode } = current_weather;
-
   return (
     <View style={styles().container}>
       <TouchableOpacity style={styles().container} onPress={fetchWeather}>
-        <MaterialCommunityIcons
+        {error ?
+         <Title
+           text={t(error)}
+           size={fonts.sizeSmall}
+         /> :
+         <>
+          <MaterialCommunityIcons
           name={weatherCodeIcon({ weathercode })}
           size={64}
           color={colors.text}
-        />
-        <Title
+          />
+          <Title
           text={`${displayTemperature({ temperature, unit })}\xB0${unit.toUpperCase()}`}
           size={fonts.sizeLarge}
-        />
+          />
+         </>
+        }
       </TouchableOpacity>
     </View>
   );

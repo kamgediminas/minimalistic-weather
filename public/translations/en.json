@@ -1,5 +1,8 @@
 {
-    "home.intro":"Soon to be app!",
+    "error":{
+        "network": "Network error",
+        "location": "Allow the app to use your location"
+    },
     "settings":{
         "title": "Settings",
         "language": "Language",
