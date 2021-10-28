@@ -17,9 +17,13 @@ const config = () => {
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.gediminas.minimalisticweather",
+      "buildNumber": "1.0.0"
     },
     "android": {
+      "package": "com.gediminas.minimalisticweather",
+      "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/images/adaptive-icon.png",
         "backgroundColor": "#18191a"
