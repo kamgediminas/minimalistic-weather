@@ -1,6 +1,6 @@
 const config = () => {
   return {
-    "name": "Minimalistic weather",
+    "name": "Minimalistic Weather",
     "slug": "minimalistic-weather",
     "version": "1.0.0",
     "orientation": "portrait",
